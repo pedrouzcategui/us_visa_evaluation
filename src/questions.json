@@ -1,0 +1,114 @@
+[
+  {
+    "text": "¿Ha viajado usted a los Estados Unidos en los ultimos 5 años?",
+    "answer_html_type": "radio",
+    "answers": [
+      {
+        "option": "yes",
+        "points": 3
+      },
+      {
+        "option": "no",
+        "points": 5
+      }
+    ]
+  },
+  {
+    "text": "¿Tiene usted familiares en los Estados Unidos?",
+    "answer_html_type": "radio",
+    "answers": [
+      {
+        "option": "yes",
+        "points": 3
+      },
+      {
+        "option": "no",
+        "points": 5
+      }
+    ]
+  },
+  {
+    "text": "¿Cuál es su motivo de viaje a los Estados Unidos?",
+    "answer_html_type": "radio",
+    "answers": [
+      {
+        "option": "yes",
+        "points": 3
+      },
+      {
+        "option": "no",
+        "points": 5
+      }
+    ]
+  },
+  {
+    "text": "¿Tiene algún familiar directo (Hermano, Hermana, Papá, Mamá, Esposa, o Hijos) viviendo Ilegalmente en los Estados Unidos?",
+    "answer_html_type": "radio",
+    "answers": [
+      {
+        "option": "yes",
+        "points": 3
+      },
+      {
+        "option": "no",
+        "points": 5
+      }
+    ]
+  },
+  {
+    "text": "¿Gana usted más de USD $500 al mes?",
+    "answer_html_type": "radio",
+    "answers": [
+      {
+        "option": "yes",
+        "points": 3
+      },
+      {
+        "option": "no",
+        "points": 5
+      }
+    ]
+  },
+  {
+    "text": "Indique el sector en el cuál trabaja:",
+    "answer_html_type": "radio",
+    "answers": [
+      {
+        "option": "yes",
+        "points": 3
+      },
+      {
+        "option": "no",
+        "points": 5
+      }
+    ]
+  },
+  {
+    "text": "Cuál es su país de origen?",
+    "answer_html_type": "radio",
+    "answers": [
+      {
+        "option": "yes",
+        "points": 3
+      },
+      {
+        "option": "no",
+        "points": 5
+      }
+    ]
+  },
+  {
+    "text": "¿En qué país planea sacar su visa de turista?",
+    "answer_html_type": "radio",
+    "answers": [
+      {
+        "option": "yes",
+        "points": 3
+      },
+      {
+        "option": "no",
+        "points": 5
+      }
+    ]
+  }
+]
