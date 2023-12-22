@@ -1,0 +1,10 @@
+.input {
+  border-bottom: 1px solid blue;
+  padding: 5px 0px;
+  width: 300px;
+  outline: none;
+}
+
+.label_container span {
+  margin-right: 10px;
+}

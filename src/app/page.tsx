@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import { Quiz } from "@/components"
-import questions from "../questions.json"
+import { questions } from "../questions"
 
 export const metadata: Metadata = {
   title: "HomePage",
