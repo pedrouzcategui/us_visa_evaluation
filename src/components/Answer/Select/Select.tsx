@@ -8,7 +8,7 @@ export function Select({ options }: OptionProps) {
             <select className={styles.select}>
                 {
                     options.map(({ value, label }) => (
-                        <option value={value}>{label}</option>
+                        <option key={`${label}-${value}`} value={value}>{label}</option>
                     ))
                 }
             </select>

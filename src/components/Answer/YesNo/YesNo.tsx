@@ -1,19 +1,38 @@
-import styles from './style.module.css';
-import { OptionProps } from '../../types';
+"use client";
+import styles from "./style.module.css";
+import { ChangeEvent, useState } from "react";
+import { NO_ANSWER, YES_ANSWER } from "@/consts/quiz_values";
 
-export function YesNo({ options }: OptionProps) {
+export function YesNo({ setAnswer }: { setAnswer: (arg: any) => any }) {
+    const [option, setOption] = useState(YES_ANSWER);
+    const onOptionChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setAnswer(e.target.value)
+        setOption(e.target.value);
+    };
     return (
         <div>
-            {
-                options.map(option => (
-                    <div>
-                        <label htmlFor='x' className={styles.label_container}>
-                            <input name='x' value={option.value} type='radio' />
-                            <span>{option.label}</span>
-                        </label>
-                    </div>
-                ))
-            }
+            <div>
+                <label htmlFor={YES_ANSWER} className={styles.label_container}>
+                    <input
+                        name="option"
+                        value={YES_ANSWER}
+                        type="radio"
+                        checked={option === YES_ANSWER}
+                        onChange={onOptionChange}
+                    />
+                    <span>Yes</span>
+                </label>
+                <label htmlFor={NO_ANSWER} className={styles.label_container}>
+                    <input
+                        name="option"
+                        value={NO_ANSWER}
+                        type="radio"
+                        checked={option === NO_ANSWER}
+                        onChange={onOptionChange}
+                    />
+                    <span>No</span>
+                </label>
+            </div>
         </div>
-    )
+    );
 }

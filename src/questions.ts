@@ -7,11 +7,11 @@ export const questions: Question[] = [
     options: [
       {
         label: "Yes",
-        value: "yes",
+        value: "Yes",
       },
       {
         label: "No",
-        value: "no",
+        value: "No",
       },
     ],
   },
@@ -21,11 +21,11 @@ export const questions: Question[] = [
     options: [
       {
         label: "Yes",
-        value: "yes",
+        value: "Yes",
       },
       {
         label: "No",
-        value: "no",
+        value: "No",
       },
     ],
   },
@@ -53,11 +53,11 @@ export const questions: Question[] = [
     options: [
       {
         label: "Yes",
-        value: "yes",
+        value: "Yes",
       },
       {
         label: "No",
-        value: "no",
+        value: "No",
       },
     ],
   },
@@ -67,11 +67,11 @@ export const questions: Question[] = [
     options: [
       {
         label: "Yes",
-        value: "yes",
+        value: "Yes",
       },
       {
         label: "No",
-        value: "no",
+        value: "No",
       },
     ],
   },
