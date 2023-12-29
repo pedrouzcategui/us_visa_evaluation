@@ -32,6 +32,10 @@ export default function QuestionCard({
         setCurrentIndex(next_question_id);
     };
 
+    const handlePreviousQuestion = (prev_question_id: number) => {
+        setCurrentIndex(prev_question_id);
+    }
+
     useEffect(() => {
         let question = {
             question_id: id,
@@ -61,7 +65,7 @@ export default function QuestionCard({
                     ) : (
                         <button
                             className={styles.button}
-                            onClick={() => handleNextQuestion(id - 1)}
+                            onClick={() => handlePreviousQuestion(id - 1)}
                         >
                             Pregunta Anterior
                         </button>

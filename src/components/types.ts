@@ -3,6 +3,11 @@ export type Option = {
   label: string;
 };
 
+export type Answer = {
+  question_id: number;
+  value: string;
+};
+
 export type OptionProps = {
   options: Option[];
 };

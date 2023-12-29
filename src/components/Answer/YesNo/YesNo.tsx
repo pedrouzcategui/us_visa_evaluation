@@ -1,6 +1,6 @@
 "use client";
 import styles from "./style.module.css";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { NO_ANSWER, YES_ANSWER } from "@/consts/quiz_values";
 
 export function YesNo({ setAnswer }: { setAnswer: (arg: any) => any }) {

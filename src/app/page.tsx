@@ -3,8 +3,7 @@ import { Quiz } from "@/components"
 import { questions } from "../questions"
 
 export const metadata: Metadata = {
-  title: "HomePage",
-  description: "Something about the Homepage"
+  title: "Quiz B1/B2",
 }
 
 export default function Home() {
