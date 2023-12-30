@@ -1,15 +1,14 @@
-import { Metadata } from "next"
+'use client'
 import { Quiz } from "@/components"
-import { questions } from "../questions"
-
-export const metadata: Metadata = {
-  title: "Quiz B1/B2",
-}
+import { store } from "@/store/store"
+import { Provider } from "react-redux"
 
 export default function Home() {
   return (
     <>
-      <Quiz questions={questions} />
+      <Provider store={store}>
+        <Quiz />
+      </Provider>
     </>
   )
 }

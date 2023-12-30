@@ -1,34 +1,29 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./style.module.css";
-import { Option, Question } from "../types";
+import { IQuestion } from "../types";
 import { Checkboxes, Input, YesNo, Select } from "..";
 
-type QuestionTypeExtended = Question & {
-    id: number;
+type QuestionTypeExtended = IQuestion & {
     setCurrentIndex: (value: number) => void;
     isFinal: boolean;
-    setQuizQuestion: (question: any) => any;
+    index: number;
 };
 
 export default function QuestionCard({
     id,
-    text,
+    title,
     example,
     options,
     answer_component,
+    selectedOptionIndex,
     setCurrentIndex,
     isFinal,
-    setQuizQuestion,
+    index
 }: QuestionTypeExtended) {
-    const [answer, setAnswer] = useState(options[0].value);
-    const [question, setQuestion] = useState({
-        question_id: id,
-        answer: "",
-    });
+    const [answer, setAnswer] = useState(options[0]);
 
     const handleNextQuestion = (next_question_id: number) => {
-        setQuizQuestion(question);
         setCurrentIndex(next_question_id);
     };
 
@@ -36,23 +31,17 @@ export default function QuestionCard({
         setCurrentIndex(prev_question_id);
     }
 
-    useEffect(() => {
-        let question = {
-            question_id: id,
-            answer: answer,
-        };
-        setQuestion(question);
-    }, [answer]);
-
     return (
         <div className={styles.card}>
-            <h2 className={styles.question_id}>Question #{id + 1}</h2>
-            <h1 className={styles.question_text}>{text}</h1>
+            <h2 className={styles.question_id}>Question #{id}</h2>
+            <h1 className={styles.question_text}>{title}</h1>
             <span className={styles.question_example}>
-                {example ? `Ejemplo: ${example}` : ""}
+                {example ? `${example}` : ""}
             </span>
             <div className={styles.answers_container}>
                 <AnswerInput
+                    question_id={id}
+                    selectedOptionIndex={selectedOptionIndex}
                     answer_component={answer_component}
                     options={options}
                     setAnswer={setAnswer}
@@ -60,12 +49,12 @@ export default function QuestionCard({
             </div>
             <div className={styles.button_container}>
                 <div>
-                    {id == 0 ? (
+                    {index == 0 ? (
                         ""
                     ) : (
                         <button
                             className={styles.button}
-                            onClick={() => handlePreviousQuestion(id - 1)}
+                            onClick={() => handlePreviousQuestion(index - 1)}
                         >
                             Pregunta Anterior
                         </button>
@@ -74,7 +63,7 @@ export default function QuestionCard({
                 <button
                     disabled={isFinal}
                     className={styles.button}
-                    onClick={() => handleNextQuestion(id + 1)}
+                    onClick={() => handleNextQuestion(index + 1)}
                 >
                     {isFinal ? "Terminar Test" : "Siguiente Pregunta"}
                 </button>
@@ -84,17 +73,22 @@ export default function QuestionCard({
 }
 
 function AnswerInput({
+    question_id,
     answer_component,
     setAnswer,
     options = [],
+    selectedOptionIndex
 }: {
+    question_id: number,
     answer_component: string;
     setAnswer: (arg: any) => any;
-    options: Option[];
+    options: string[];
+    selectedOptionIndex: number | number[];
 }) {
+
     switch (answer_component) {
         case "radio":
-            return <YesNo setAnswer={setAnswer} />;
+            return <YesNo selectedOptionIndex={selectedOptionIndex} options={options} question_id={question_id} />;
         case "input":
             return <Input />;
         case "select":

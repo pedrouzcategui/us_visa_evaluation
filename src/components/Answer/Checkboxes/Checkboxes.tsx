@@ -1,15 +1,14 @@
 import style from "./style.module.css"
-import { OptionProps } from '../../types';
 
-export function Checkboxes({ options }: OptionProps) {
+export function Checkboxes({ options }: { options: string[] }) {
     return (
         <div>
             <label>
                 <span className={style.span}>Seleccione las que apliquen: </span>
                 <div className={style.checkbox_row}>
-                    {options.map(({ value, label }) => (
-                        <div key={`${label}-${value}`}>
-                            <input type="checkbox" value={value} /><span>{label}</span>
+                    {options.map((value) => (
+                        <div key={`${value}`}>
+                            <input type="checkbox" value={value} /><span>{value}</span>
                         </div>
                     ))}
                 </div>

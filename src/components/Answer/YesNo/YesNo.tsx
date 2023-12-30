@@ -1,37 +1,40 @@
 "use client";
 import styles from "./style.module.css";
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { NO_ANSWER, YES_ANSWER } from "@/consts/quiz_values";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { capitalize } from '@/utils';
+import { setSelectedOption } from "@/store/quiz/quizSlice";
 
-export function YesNo({ setAnswer }: { setAnswer: (arg: any) => any }) {
-    const [option, setOption] = useState(YES_ANSWER);
+export function YesNo({ question_id, options, selectedOptionIndex }: { question_id: number, options: string[], selectedOptionIndex: number | number[] }) {
+    const dispatch = useAppDispatch();
+    const [selectedIndex, setSelectedIndex] = useState(selectedOptionIndex);
     const onOptionChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setAnswer(e.target.value)
-        setOption(e.target.value);
+        let { value } = e.target;
+        setSelectedIndex(parseInt(value));
     };
+
+    useEffect(() => {
+        dispatch(setSelectedOption({ selected_option: selectedIndex, question_id: question_id - 1 }))
+    }, [selectedIndex])
+
     return (
         <div>
             <div>
-                <label htmlFor={YES_ANSWER} className={styles.label_container}>
-                    <input
-                        name="option"
-                        value={YES_ANSWER}
-                        type="radio"
-                        checked={option === YES_ANSWER}
-                        onChange={onOptionChange}
-                    />
-                    <span>Yes</span>
-                </label>
-                <label htmlFor={NO_ANSWER} className={styles.label_container}>
-                    <input
-                        name="option"
-                        value={NO_ANSWER}
-                        type="radio"
-                        checked={option === NO_ANSWER}
-                        onChange={onOptionChange}
-                    />
-                    <span>No</span>
-                </label>
+                {
+                    options.map((option, i) => {
+                        return (<label key={`${question_id}-${option}-${i}`} htmlFor="yes_no" className={styles.label_container}>
+                            <input
+                                name="yes_no"
+                                value={i}
+                                type="radio"
+                                checked={selectedIndex === i}
+                                onChange={onOptionChange}
+                            />
+                            <span>{capitalize(option)}</span>
+                        </label>)
+                    })
+                }
             </div>
         </div>
     );

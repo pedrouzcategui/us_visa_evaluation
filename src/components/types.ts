@@ -8,17 +8,15 @@ export type Answer = {
   value: string;
 };
 
-export type OptionProps = {
-  options: Option[];
-};
-
-export type Question = {
-  text: string;
+export type IQuestion = {
+  id: number;
+  title: string;
   example?: string;
-  answer_component: string;
-  options: Option[];
+  options: string[];
+  answer_component: "radio" | "input" | "select" | "checkbox";
+  selectedOptionIndex: number | number[];
 };
 
-export type Quiz = {
-  questions: Question[];
+export type IQuiz = {
+  questions: IQuestion[];
 };
