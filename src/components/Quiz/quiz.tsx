@@ -17,7 +17,10 @@ export function Quiz() {
 
     return (
         <Provider store={store}>
-            <div className="h-[95vh] flex items-center justify-center">
+            <div className="w-4/5 mx-auto h-[95vh] flex flex-col items-center justify-center">
+                <div className="w-fit px-4 text-center py-2 rounded-lg bg-slate-700">
+                    <span className="text-white">Question {index + 1} / {questions.length}</span>
+                </div>
                 <QuestionCard
                     key={`question-${index}`}
                     index={index}
