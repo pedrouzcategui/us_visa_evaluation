@@ -1,44 +1,55 @@
 import { Hero, Pricing, Testimonials, CTA } from "@/components";
+import Container from "@/components/Container/Container";
+import Grid from "@/components/Grid/Grid";
+import Navbar from "@/components/Navbar/Navbar";
+import Widget from "@/components/Widget/Widget";
+import { IoIosPaper } from "react-icons/io";
+
+type ProcessStep = {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+const PROCESS_STEPS: ProcessStep[] = [
+  {
+    icon: <IoIosPaper size={30} />,
+    title: '1. Realiza el quiz gratuito',
+    description: 'Obten tu calificacion de perfil de visa, obten insights, y si crees que es necesario que te asesoremos, mejoraremos tu puntuacion usando las mejores practicas de nuestros participantes aprobados.',
+  },
+  {
+    icon: <IoIosPaper size={30} />,
+    title: '1. Realiza el quiz gratuito',
+    description: 'Obten tu calificacion de perfil de visa, obten insights, y si crees que es necesario que te asesoremos, mejoraremos tu puntuacion usando las mejores practicas de nuestros participantes aprobados.',
+  },
+  {
+    icon: <IoIosPaper size={30} />,
+    title: '1. Realiza el quiz gratuito',
+    description: 'Obten tu calificacion de perfil de visa, obten insights, y si crees que es necesario que te asesoremos, mejoraremos tu puntuacion usando las mejores practicas de nuestros participantes aprobados.',
+  },
+]
 
 export default function Home() {
   return (
-    <div>
-      <div>
+    <main>
+      <Container>
+        <Navbar />
         <Hero />
-      </div>
-      <div className="mx-auto w-4/5 grid grid-cols-3">
-        <div className="col bg-white m-8 p-8">
-          <div className="flex items-center gap-4 mb-2">
-            <span>1.</span>
-            <h2 className="text-xl font-bold">Evalua tu Perfil (gratis)</h2>
-          </div>
-          <p className="text-justify text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam porro animi voluptatum, nobis suscipit quas, placeat nemo aspernatur ipsa iure necessitatibus dolores fugit delectus impedit recusandae quidem vel odit inventore</p>
-        </div>
-        <div className="col bg-white m-8 p-8">
-          <div className="flex items-center gap-4 mb-2">
-            <span>1.</span>
-            <h2 className="text-xl font-bold">Evalua tu Perfil (gratis)</h2>
-          </div>
-          <p className="text-justify text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam porro animi voluptatum, nobis suscipit quas, placeat nemo aspernatur ipsa iure necessitatibus dolores fugit delectus impedit recusandae quidem vel odit inventore</p>
-        </div>
-        <div className="col bg-white m-8 p-8">
-          <div className="flex items-center gap-4 mb-2">
-            <span>1.</span>
-            <h2 className="text-xl font-bold">Evalua tu Perfil (gratis)</h2>
-          </div>
-          <p className="text-justify text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam porro animi voluptatum, nobis suscipit quas, placeat nemo aspernatur ipsa iure necessitatibus dolores fugit delectus impedit recusandae quidem vel odit inventore</p>
-        </div>
-
-      </div>
-      <div>
-        <Pricing />
-      </div>
-      <div>
-        <Testimonials />
-      </div>
-      <div>
-        <CTA />
-      </div>
-    </div>
-  )
+        <Grid numberOfColumns={3} gap={2}>
+          {PROCESS_STEPS.map((processStep, i) => {
+            return (
+              <Grid.Column key={`${processStep.title}-${i}`}>
+                <Widget
+                  {...processStep}
+                />
+              </Grid.Column>
+            )
+          })}
+        </Grid>
+        {/* <Pricing /> */}
+      </Container>
+      <Testimonials />
+      <CTA />
+    </main>
+  );
 }
