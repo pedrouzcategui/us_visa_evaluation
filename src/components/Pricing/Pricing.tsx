@@ -2,6 +2,7 @@ import Container from "../Container/Container";
 import Heading from "../Heading/Heading";
 import Grid from "../Grid/Grid";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
+import Button from "../Button/Button";
 
 const PRICING_PLANS: PricingColumnProps[] = [
     {
@@ -47,7 +48,7 @@ type PricingColumnProps = {
 
 export function Pricing() {
     return (
-        <Container extendedClassName="py-8">
+        <Container extendedClassName="py-8 my-5">
             <Heading level={2} className="text-center font-bold mb-4">
                 Pricing
             </Heading>
@@ -66,15 +67,18 @@ function PricingPlans() {
 
 function PricingColumn({ name, price, benefits, subTitle }: PricingColumnProps) {
     return (
-        <div className="flex flex-col items-center border-2 border-slate-550 p-8">
-            <span className="text-2xl">{name}</span>
-            <div className="text-center mb-4">
-                <div>
-                    <span className="text-4xl font-bold">{price}</span>
+        <div className="flex flex-col justify-between border-2 border-slate-550 p-8">
+            <div className="flex flex-col ">
+                <span className="text-2xl">{name}</span>
+                <div className="mb-4">
+                    <div>
+                        <span className="text-4xl font-bold">{price}</span>
+                    </div>
+                    <small>{subTitle}</small>
                 </div>
-                <small>{subTitle}</small>
+                <Benefits benefits={benefits} />
             </div>
-            <Benefits benefits={benefits} />
+            <Button type="secondary">Buy</Button>
             {/* <small>Nota: Si estas viajando con tu esposa o hijos, ellos no pagan.</small> */}
         </div>
     );
