@@ -23,6 +23,7 @@ export default function QuestionCard({
 }: QuestionTypeExtended) {
 
     const handleQuestionChange = (question_id: number) => {
+        // Here I should update the context
         setCurrentIndex(question_id);
     }
 
@@ -35,15 +36,13 @@ export default function QuestionCard({
             </span>
             <div className={styles.answers_container}>
                 <AnswerInput
-                    question_id={id}
                     selectedOptionIndex={selectedOptionIndex}
                     answer_component={answer_component}
-                    options={options}
                 />
             </div>
             <div className={styles.button_container}>
                 <div>
-                    {index == 0 &&
+                    {index != 0 &&
                         <button
                             className={styles.button}
                             onClick={() => handleQuestionChange(index - 1)}
@@ -65,26 +64,17 @@ export default function QuestionCard({
 }
 
 function AnswerInput({
-    question_id,
     answer_component,
-    options = [],
     selectedOptionIndex
 }: {
-    question_id: number,
     answer_component: string;
-    options: string[];
     selectedOptionIndex: number | number[];
 }) {
 
     switch (answer_component) {
         case "radio":
-            return <YesNo selectedOptionIndex={selectedOptionIndex} options={options} question_id={question_id} />;
-        case "input":
-            return <Input />;
-        case "select":
-            return <Select options={options} />;
-        case "checkbox":
-            return <Checkboxes options={options} />;
+            return <YesNo selectedOptionIndex={selectedOptionIndex} />;
+        default:
+            return <></>;
     }
-    return <></>;
 }

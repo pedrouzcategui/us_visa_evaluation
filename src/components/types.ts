@@ -4,7 +4,7 @@ export type Option = {
 };
 
 export type IAnswer = {
-  questionID: string;
+  questionID: number;
   selectedIndex: number;
 };
 

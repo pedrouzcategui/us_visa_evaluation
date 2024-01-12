@@ -1,27 +1,33 @@
 "use client";
 import styles from "./style.module.css";
 import { ChangeEvent, useContext, useState } from "react";
-import { capitalize } from '@/utils';
-import { QuizContext } from "@/contexts/QuizContext";
+import { capitalize } from "@/utils";
+import { NO_ANSWER, YES_ANSWER } from '@/consts/quiz_values';
+const OPTIONS = [YES_ANSWER, NO_ANSWER]
 
-export function YesNo({ question_id, options, selectedOptionIndex }: { question_id: number, options: string[], selectedOptionIndex: number | number[] }) {
-
-    const Quiz = useContext(QuizContext);
-
+export function YesNo({
+    selectedOptionIndex,
+}: {
+    selectedOptionIndex: number | number[];
+}) {
     const [selectedIndex, setSelectedIndex] = useState(selectedOptionIndex);
 
     const onOptionChange = (e: ChangeEvent<HTMLInputElement>) => {
         let { value } = e.target;
-        setSelectedIndex(parseInt(value));
-
+        let selectedIndex = parseInt(value);
+        setSelectedIndex(selectedIndex);
     };
 
     return (
         <div>
             <div>
-                {
-                    options.map((option, i) => {
-                        return (<label key={`${question_id}-${option}-${i}`} htmlFor="yes_no" className={styles.label_container}>
+                {OPTIONS.map((option, i) => {
+                    return (
+                        <label
+                            key={`${option}-${i}`}
+                            htmlFor="yes_no"
+                            className={styles.label_container}
+                        >
                             <input
                                 name="yes_no"
                                 value={i}
@@ -30,9 +36,9 @@ export function YesNo({ question_id, options, selectedOptionIndex }: { question_
                                 onChange={onOptionChange}
                             />
                             <span>{capitalize(option)}</span>
-                        </label>)
-                    })
-                }
+                        </label>
+                    );
+                })}
             </div>
         </div>
     );
