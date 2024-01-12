@@ -1,22 +1,20 @@
 "use client";
 import styles from "./style.module.css";
-import { ChangeEvent, useEffect, useState } from "react";
-import { NO_ANSWER, YES_ANSWER } from "@/consts/quiz_values";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { ChangeEvent, useContext, useState } from "react";
 import { capitalize } from '@/utils';
-import { setSelectedOption } from "@/store/quiz/quizSlice";
+import QuizContext from "@/contexts/QuizContext";
 
 export function YesNo({ question_id, options, selectedOptionIndex }: { question_id: number, options: string[], selectedOptionIndex: number | number[] }) {
-    const dispatch = useAppDispatch();
+
+    const Quiz = useContext(QuizContext);
+
     const [selectedIndex, setSelectedIndex] = useState(selectedOptionIndex);
+
     const onOptionChange = (e: ChangeEvent<HTMLInputElement>) => {
         let { value } = e.target;
         setSelectedIndex(parseInt(value));
-    };
 
-    useEffect(() => {
-        dispatch(setSelectedOption({ selected_option: selectedIndex, question_id: question_id - 1 }))
-    }, [selectedIndex])
+    };
 
     return (
         <div>

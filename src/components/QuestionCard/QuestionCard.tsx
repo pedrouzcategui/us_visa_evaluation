@@ -21,14 +21,9 @@ export default function QuestionCard({
     isFinal,
     index
 }: QuestionTypeExtended) {
-    const [answer, setAnswer] = useState(options[0]);
 
-    const handleNextQuestion = (next_question_id: number) => {
-        setCurrentIndex(next_question_id);
-    };
-
-    const handlePreviousQuestion = (prev_question_id: number) => {
-        setCurrentIndex(prev_question_id);
+    const handleQuestionChange = (question_id: number) => {
+        setCurrentIndex(question_id);
     }
 
     return (
@@ -36,7 +31,7 @@ export default function QuestionCard({
             <h2 className={styles.question_id}>Question #{id}</h2>
             <h1 className={styles.question_text}>{title}</h1>
             <span className={styles.question_example}>
-                {example ? `${example}` : ""}
+                {example && `${example}`}
             </span>
             <div className={styles.answers_container}>
                 <AnswerInput
@@ -44,26 +39,23 @@ export default function QuestionCard({
                     selectedOptionIndex={selectedOptionIndex}
                     answer_component={answer_component}
                     options={options}
-                    setAnswer={setAnswer}
                 />
             </div>
             <div className={styles.button_container}>
                 <div>
-                    {index == 0 ? (
-                        ""
-                    ) : (
+                    {index == 0 &&
                         <button
                             className={styles.button}
-                            onClick={() => handlePreviousQuestion(index - 1)}
+                            onClick={() => handleQuestionChange(index - 1)}
                         >
                             Pregunta Anterior
                         </button>
-                    )}
+                    }
                 </div>
                 <button
                     disabled={isFinal}
                     className={styles.button}
-                    onClick={() => handleNextQuestion(index + 1)}
+                    onClick={() => handleQuestionChange(index + 1)}
                 >
                     {isFinal ? "Terminar Test" : "Siguiente Pregunta"}
                 </button>
@@ -75,13 +67,11 @@ export default function QuestionCard({
 function AnswerInput({
     question_id,
     answer_component,
-    setAnswer,
     options = [],
     selectedOptionIndex
 }: {
     question_id: number,
     answer_component: string;
-    setAnswer: (arg: any) => any;
     options: string[];
     selectedOptionIndex: number | number[];
 }) {

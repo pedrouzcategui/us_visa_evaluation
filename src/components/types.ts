@@ -3,9 +3,9 @@ export type Option = {
   label: string;
 };
 
-export type Answer = {
-  question_id: number;
-  value: string;
+export type IAnswer = {
+  questionID: string;
+  selectedIndex: number;
 };
 
 export type IQuestion = {
