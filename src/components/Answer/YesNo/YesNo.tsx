@@ -2,7 +2,7 @@
 import styles from "./style.module.css";
 import { ChangeEvent, useContext, useState } from "react";
 import { capitalize } from '@/utils';
-import QuizContext from "@/contexts/QuizContext";
+import { QuizContext } from "@/contexts/QuizContext";
 
 export function YesNo({ question_id, options, selectedOptionIndex }: { question_id: number, options: string[], selectedOptionIndex: number | number[] }) {
 
