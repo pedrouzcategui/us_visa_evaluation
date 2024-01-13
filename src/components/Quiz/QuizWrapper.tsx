@@ -1,3 +1,4 @@
+"use client"
 import { useState, useContext, useEffect } from "react";
 import { QuizContext } from "@/contexts/QuizContext";
 import QuestionCard from "../QuestionCard/QuestionCard";

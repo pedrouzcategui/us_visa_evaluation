@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect } from "react";
 import { IQuestion, IAnswer } from "@/components/types";
 import QUIZ from "@/questions";
