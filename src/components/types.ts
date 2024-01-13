@@ -14,7 +14,6 @@ export type IQuestion = {
   example?: string;
   options: string[];
   answer_component: "radio" | "input" | "select" | "checkbox";
-  selectedOptionIndex: number | number[];
 };
 
 export type IQuiz = {

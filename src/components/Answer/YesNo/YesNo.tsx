@@ -2,15 +2,17 @@
 import styles from "./style.module.css";
 import { ChangeEvent, useContext, useState } from "react";
 import { capitalize } from "@/utils";
-import { NO_ANSWER, YES_ANSWER } from '@/consts/quiz_values';
-const OPTIONS = [YES_ANSWER, NO_ANSWER]
+import { NO_ANSWER, YES_ANSWER } from "@/consts/quiz_values";
+import { QuizContext } from "@/contexts/QuizContext";
+const OPTIONS = [YES_ANSWER, NO_ANSWER];
 
 export function YesNo({
-    selectedOptionIndex,
+    selectedIndex,
+    setSelectedIndex,
 }: {
-    selectedOptionIndex: number | number[];
+    selectedIndex: number;
+    setSelectedIndex: React.Dispatch<React.SetStateAction<number>>;
 }) {
-    const [selectedIndex, setSelectedIndex] = useState(selectedOptionIndex);
 
     const onOptionChange = (e: ChangeEvent<HTMLInputElement>) => {
         let { value } = e.target;
