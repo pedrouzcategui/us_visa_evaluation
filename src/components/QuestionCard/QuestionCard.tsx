@@ -18,13 +18,17 @@ export default function QuestionCard({
     isFinal,
     index,
 }: QuestionTypeExtended) {
-    const { setCurrentQuestionIndex, handleAnswerChange, currentQuestionIndex } = useContext(QuizContext);
+    const { setCurrentQuestionIndex, handleAnswerChange, currentQuestionIndex, questions, setIsReview } = useContext(QuizContext);
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const handleQuestionChange = (next_question_id: number) => {
         if (next_question_id > currentQuestionIndex) {
             handleAnswerChange(id, selectedIndex);
         }
+        if (next_question_id > questions.length) {
+            setIsReview(true);
+            return;
+        };
         setCurrentQuestionIndex((next_question_id));
     };
 
@@ -42,7 +46,7 @@ export default function QuestionCard({
             </div>
             <div className={styles.button_container}>
                 <div>
-                    {index != 0 && (
+                    {index != 1 && (
                         <button
                             className={styles.button}
                             onClick={() => handleQuestionChange(index - 1)}
@@ -51,13 +55,25 @@ export default function QuestionCard({
                         </button>
                     )}
                 </div>
-                <button
-                    disabled={isFinal}
-                    className={styles.button}
-                    onClick={() => handleQuestionChange(index + 1)}
-                >
-                    {isFinal ? "Terminar Test" : "Siguiente Pregunta"}
-                </button>
+                {
+                    !isFinal &&
+                    <button
+                        disabled={isFinal}
+                        className={styles.button}
+                        onClick={() => handleQuestionChange(index + 1)}
+                    >
+                        Siguiente Pregunta
+                    </button>
+                }
+                {
+                    isFinal &&
+                    <button
+                        className={styles.button}
+                        onClick={() => handleQuestionChange(index + 1)}
+                    >
+                        Revisar Respuestas
+                    </button>
+                }
             </div>
         </div>
     );

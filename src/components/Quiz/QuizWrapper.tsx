@@ -2,9 +2,10 @@
 import { useState, useContext, useEffect } from "react";
 import { QuizContext } from "@/contexts/QuizContext";
 import QuestionCard from "../QuestionCard/QuestionCard";
+import QuizAnswersConfirmationScreen from "./QuizAnswersConfirmationScreen";
 
 export default function QuizWrapper() {
-    const { currentQuestionIndex, questions } = useContext(QuizContext);
+    const { currentQuestionIndex, questions, isReview } = useContext(QuizContext);
     const currentQuestion = questions.find(question => question.id == currentQuestionIndex);
     if (!currentQuestion) throw new Error('Question not found or some shit like that')
     const { id, title, example, answer_component, options } = currentQuestion;
@@ -15,7 +16,7 @@ export default function QuizWrapper() {
     }, [currentQuestionIndex]);
 
     return (
-        <div className="w-4/5 mx-auto h-[95vh] flex flex-col items-center justify-center">
+        <div className="w-4/5 mx-auto min-h-[95vh] flex flex-col items-center justify-center">
             <QuestionProgressIndicator
                 currentQuestionIndex={currentQuestionIndex}
                 questionsLength={questions.length}
@@ -30,6 +31,9 @@ export default function QuizWrapper() {
                 index={currentQuestionIndex}
                 isFinal={isFinal}
             />
+            {
+                isReview && <QuizAnswersConfirmationScreen />
+            }
         </div>
     );
 }
