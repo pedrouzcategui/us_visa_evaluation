@@ -1,11 +1,11 @@
 "use client"
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, use } from "react";
 import { QuizContext } from "@/contexts/QuizContext";
 import QuestionCard from "../QuestionCard/QuestionCard";
 import QuizAnswersConfirmationScreen from "./QuizAnswersConfirmationScreen";
 
 export default function QuizWrapper() {
-    const { currentQuestionIndex, questions, isReview } = useContext(QuizContext);
+    const { currentQuestionIndex, questions, isReview, setIsEdit } = useContext(QuizContext);
     const currentQuestion = questions.find(question => question.id == currentQuestionIndex);
     if (!currentQuestion) throw new Error('Current Question Not Found')
     const { id, title, example, answer_component, options } = currentQuestion;
@@ -14,6 +14,15 @@ export default function QuizWrapper() {
     useEffect(() => {
         setIsFinal(currentQuestionIndex === questions.length ?? false);
     }, [currentQuestionIndex]);
+
+    useEffect(() => {
+        setIsEdit(() => {
+            if (!isReview) {
+                return false;
+            }
+            return true;
+        });
+    }, [isReview])
 
     return (
         <div className="w-4/5 mx-auto min-h-[95vh] flex flex-col items-center justify-center">

@@ -31,9 +31,14 @@ export default function QuestionCard({
         currentQuestionIndex,
         questions,
         setIsReview,
+        userAnswers,
+        isEdit
     } = useContext(QuizContext);
-    const [selectedIndex, setSelectedIndex] = useState(0);
 
+    const [selectedIndex, setSelectedIndex] = useState(userAnswers[currentQuestionIndex]?.selectedIndex || 0);
+
+    // console.log(`Is Final:`, isFinal);
+    // console.log(`Is Edit:`, isEdit);
     const handleQuestionChange = (next_question_id: number) => {
         if (next_question_id > currentQuestionIndex) {
             handleAnswerChange(id, selectedIndex);
@@ -44,6 +49,8 @@ export default function QuestionCard({
         }
         setCurrentQuestionIndex(next_question_id);
     };
+
+
 
     return (
         <div>
@@ -66,14 +73,14 @@ export default function QuestionCard({
                 <Button
                     variant="secondary"
                     disabled={isFinal}
-                    isVisible={!isFinal}
+                    isVisible={!isFinal && !isEdit}
                     onClick={() => handleQuestionChange(index + 1)}
                 >
                     Siguiente Pregunta
                 </Button>
                 <Button
                     variant="secondary"
-                    isVisible={isFinal}
+                    isVisible={isFinal || isEdit}
                     onClick={() => handleQuestionChange(index + 1)}
                 >
                     Revisar Respuestas
