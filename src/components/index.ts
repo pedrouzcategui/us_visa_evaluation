@@ -1,6 +1,11 @@
-export { Quiz } from "./Quiz/quiz";
+export { Quiz } from "./Quiz/Quiz";
 export { YesNo } from "./Answer/YesNo/YesNo";
 export { Input } from "./Answer/Input/Input";
 export { Checkboxes } from "./Answer/Checkboxes/Checkboxes";
 export { Select } from "./Answer/Select/Select";
-export type { Question, Answer, Quiz as QuizInterface, Option } from "./types";
+export type {
+  IQuestion,
+  IAnswer,
+  IQuiz as QuizInterface,
+  Option,
+} from "./types";
