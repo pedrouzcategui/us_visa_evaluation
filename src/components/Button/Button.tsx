@@ -1,7 +1,9 @@
 type ButtonProps = {
     type: 'primary' | 'secondary' | 'default';
     children: React.ReactNode;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => any;
 }
+
 export default function Button({ children, type = 'default' }: ButtonProps) {
     let classNameString = getClassNameStringByType(type);
     return (
