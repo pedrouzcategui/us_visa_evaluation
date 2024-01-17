@@ -65,22 +65,28 @@ export default function Home() {
       <Container>
         <Navbar />
         <Hero />
-        <Grid numberOfColumns={3} gap={2}>
-          {PROCESS_STEPS.map((processStep, i) => {
-            return (
-              <Grid.Column key={`${processStep.title}-${i}`}>
-                <Widget
-                  {...processStep}
-                  extendedClassName="min-h-[250px] flex flex-col justify-center"
-                />
-              </Grid.Column>
-            )
-          })}
-        </Grid>
+        <ProcessSteps />
         <Pricing />
       </Container>
       <Testimonials />
       <CTA />
     </main>
   );
+}
+
+function ProcessSteps() {
+  return (
+    <Grid numberOfColumns={3}>
+      {PROCESS_STEPS.map((processStep, i) => {
+        return (
+          <Grid.Column key={`${processStep.title}-${i}`}>
+            <Widget
+              {...processStep}
+              extendedClassName="min-h-[250px] flex flex-col justify-center"
+            />
+          </Grid.Column>
+        )
+      })}
+    </Grid>
+  )
 }

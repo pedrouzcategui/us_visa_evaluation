@@ -48,14 +48,14 @@ type PricingColumnProps = {
 
 export function Pricing() {
     return (
-        <Container extendedClassName="py-8 my-5">
+        <div className="my-8">
             <Heading level={2} className="text-center font-bold mb-4">
                 Pricing
             </Heading>
             <Grid numberOfColumns={3}>
                 <PricingPlans />
             </Grid>
-        </Container>
+        </div>
     );
 }
 
@@ -68,18 +68,17 @@ function PricingPlans() {
 function PricingColumn({ name, price, benefits, subTitle }: PricingColumnProps) {
     return (
         <div className="flex flex-col justify-between border-2 border-slate-550 p-8">
-            <div className="flex flex-col ">
-                <span className="text-2xl">{name}</span>
-                <div className="mb-4">
-                    <div>
-                        <span className="text-4xl font-bold">{price}</span>
+            <div className="flex flex-col items-center">
+                <div className="text-center">
+                    <span className="text-2xl">{name}</span>
+                    <div className="mb-4">
+                        <span className="block text-2xl font-bold">{name == 'Business' ? "Let's talk" : `US $${price}`}</span>
+                        <small>{subTitle}</small>
                     </div>
-                    <small>{subTitle}</small>
                 </div>
                 <Benefits benefits={benefits} />
             </div>
-            <Button type="secondary">Buy</Button>
-            {/* <small>Nota: Si estas viajando con tu esposa o hijos, ellos no pagan.</small> */}
+            <Button variant="secondary">Buy</Button>
         </div>
     );
 }

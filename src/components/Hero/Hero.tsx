@@ -1,21 +1,18 @@
+import Image from "next/image";
 import Button from "../Button/Button";
-
-type HeroProps = {
-    title: string;
-    description: string;
-}
-
+import Grid from "../Grid/Grid";
+import Heading from "../Heading/Heading";
 export function Hero() {
     return (
-        <div className="h-[500px] bg-white grid grid-cols-3 justify-center items-center">
-            <div className="col col-span-2">
-                <h1 className="font-bold text-4xl">Conocer los Estados Unidos</h1>
-                <p className="mb-4">Es tu sueño, y es posible con nosotros.</p>
-                <Button type="secondary">Asesorarme</Button>
-            </div>
-            <div className="col">
-                <p>Something made with Three.js like the visa or some shit like that</p>
-            </div>
-        </div>
+        <Grid numberOfColumns={2} className="h-[500px] items-center">
+            <Grid.Column>
+                <Heading className="font-bold mb-2" level={1}>Conocer los Estados Unidos</Heading>
+                <p className="mb-4">Un sueño posible con nosotros.</p>
+                <Button variant="secondary">Asesorarme</Button>
+            </Grid.Column>
+            <Grid.Column className="flex justify-center">
+                <Image src={'/us-visa.png'} alt="US VISA" width={300} height={100} />
+            </Grid.Column>
+        </Grid >
     )
 }

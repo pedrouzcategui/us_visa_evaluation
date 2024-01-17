@@ -1,11 +1,10 @@
-type ButtonProps = {
-    type: 'primary' | 'secondary' | 'default';
+type ButtonProps = React.ButtonHTMLAttributes<HTMLElement> & {
+    variant: 'primary' | 'secondary' | 'default';
     children: React.ReactNode;
-    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => any;
 }
 
-export default function Button({ children, type = 'default' }: ButtonProps) {
-    let classNameString = getClassNameStringByType(type);
+export default function Button({ children, variant = 'default' }: ButtonProps) {
+    let classNameString = getClassNameStringByType(variant);
     return (
         <button className={`py-3 px-5 ${classNameString}`}>
             {children}

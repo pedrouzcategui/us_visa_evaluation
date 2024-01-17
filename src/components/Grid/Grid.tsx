@@ -1,25 +1,24 @@
-type GridProps = {
+type GridProps = React.HTMLAttributes<HTMLDivElement> & {
     numberOfColumns: number;
     numberOfRows?: number;
-    gap?: number;
     children: React.ReactNode;
 }
 
-type ColumnProps = {
+type ColumnProps = React.HTMLAttributes<HTMLDivElement> & {
     children: React.ReactNode;
 }
 
-export default function Grid({ numberOfColumns, numberOfRows = 1, gap = 1, children }: GridProps) {
+export default function Grid({ numberOfColumns, numberOfRows = 1, children, ...props }: GridProps) {
     return (
-        <div className={`grid gap-8 grid-cols-${numberOfColumns} grid-rows-${numberOfRows}`}>
+        <div className={`grid gap-8 grid-cols-1 md:grid-cols-${numberOfColumns} grid-rows-${numberOfRows} ${props.className ?? ""}`}>
             {children}
         </div>
     )
 }
 
-function Column({ children }: ColumnProps) {
+function Column({ children, ...props }: ColumnProps) {
     return (
-        <div className="col">
+        <div className={`col ${props.className ?? ''}`}>
             {children}
         </div>
     )
