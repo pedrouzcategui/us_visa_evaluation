@@ -1,6 +1,6 @@
 "use client";
 import styles from "./style.module.css";
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useContext } from "react";
 import { capitalize } from "@/utils";
 import { NO_ANSWER, YES_ANSWER } from "@/consts/quiz_values";
 import { QuizContext } from "@/contexts/QuizContext";
@@ -13,6 +13,9 @@ export function YesNo({
     selectedIndex: number;
     setSelectedIndex: React.Dispatch<React.SetStateAction<number>>;
 }) {
+
+    // Get Current Question
+    // Put the value of the current answer if exists
 
     const onOptionChange = (e: ChangeEvent<HTMLInputElement>) => {
         let { value } = e.target;

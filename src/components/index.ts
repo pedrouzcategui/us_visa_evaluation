@@ -1,4 +1,4 @@
-export { Quiz } from "./Quiz/Quiz";
+export { Quiz } from "./Quiz/quiz";
 export { YesNo } from "./Answer/YesNo/YesNo";
 export { Input } from "./Answer/Input/Input";
 export { Checkboxes } from "./Answer/Checkboxes/Checkboxes";

@@ -49,10 +49,6 @@ const QuizProvider = ({ children }: { children: React.ReactNode }) => {
     });
   }
 
-  useEffect(() => {
-    console.log(userAnswers);
-  }, [userAnswers]);
-
   return (
     <QuizContext.Provider
       value={{

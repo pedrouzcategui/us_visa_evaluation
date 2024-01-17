@@ -1,6 +1,7 @@
 "use client";
 import { QuizContext } from "@/contexts/QuizContext";
 import React from "react";
+import Button from '../Button/Button';
 
 export default function QuizAnswersConfirmationScreen() {
     const { questions, userAnswers } = React.useContext(QuizContext);
@@ -17,6 +18,13 @@ export default function QuizAnswersConfirmationScreen() {
 }
 
 function QuizAnswerRow({ question_title, question_number, user_answer }: { question_title: string, question_number: number, user_answer: number }) {
+    const { setCurrentQuestionIndex, setIsReview } = React.useContext(QuizContext);
+
+    const handleEditQuestion = () => {
+        setCurrentQuestionIndex(question_number);
+        setIsReview(false);
+    }
+
     return (
         <div>
             <div className="grid grid-cols-3 gap-3 p-4">
@@ -31,9 +39,11 @@ function QuizAnswerRow({ question_title, question_number, user_answer }: { quest
                     </p>
                 </div>
                 <div className="flex items-center justify-center">
-                    <button >
+                    <Button variant="secondary"
+                        onClick={handleEditQuestion}
+                    >
                         Editar Respuesta
-                    </button>
+                    </Button>
                 </div>
             </div>
             <hr className="border-gray-200 dark:border-gray-700" />
