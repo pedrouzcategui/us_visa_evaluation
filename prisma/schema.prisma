@@ -11,21 +11,45 @@ datasource db {
 }
 
 model Quiz {
-  id String @id @default(cuid())
+  id          String           @id @default(cuid())
+  title       String
+  questions   Question[]
+  submissions QuizSubmission[]
+  published   Boolean          @default(false)
 }
 
 model Question {
-  id String @id @default(cuid())
+  id      String   @id @default(cuid())
+  name    String
+  answers Answer[]
+  Quiz    Quiz?    @relation(fields: [quizId], references: [id])
+  quizId  String?
 }
 
 model Answer {
-  id String @id @default(cuid())
+  id               String    @id @default(cuid())
+  content          String
+  isCorrect        Boolean
+  Question         Question? @relation(fields: [questionId], references: [id])
+  questionId       String?
+  quizSubmissionId String?
 }
 
 model QuizSubmission {
-  id String @id @default(cuid())
+  id     String  @id @default(cuid())
+  Quiz   Quiz?   @relation(fields: [quizId], references: [id])
+  quizId String?
+  score  Float
 }
 
 model User {
   id String @id @default(cuid())
+}
+
+model Subscriber {
+  id           String  @id @default(cuid())
+  first_name   String
+  last_name    String
+  email        String
+  isSubscribed Boolean @default(true)
 }

@@ -5,7 +5,7 @@ import { YesNo } from "..";
 import { useContext, useState } from "react";
 import { QuizContext } from "@/contexts/QuizContext";
 import Button from "../Button/Button";
-// import Grid from '@/components';
+import Grid from '@/components/Grid/Grid';
 
 type QuestionTypeExtended = IQuestion & {
     isFinal: boolean;
@@ -64,30 +64,34 @@ export default function QuestionCard({
                     setSelectedIndex={setSelectedIndex}
                 />
             </div>
-            {/* <Grid>
-                <Button
-                    variant="primary"
-                    isVisible={index != 1 && !isEdit}
-                    onClick={() => handleQuestionChange(index - 1)}
-                >
-                    Pregunta Anterior
-                </Button>
-                <Button
-                    variant="secondary"
-                    disabled={isFinal}
-                    isVisible={!isFinal && !isEdit}
-                    onClick={() => handleQuestionChange(index + 1)}
-                >
-                    Siguiente Pregunta
-                </Button>
-                <Button
-                    variant="secondary"
-                    isVisible={isFinal || isEdit}
-                    onClick={() => handleQuestionChange(index + 1)}
-                >
-                    Revisar Respuestas
-                </Button>
-            </Grid> */}
+            <Grid numberOfColumns={2}>
+                <Grid.Column>
+                    <Button
+                        variant="primary"
+                        isVisible={index != 1 && !isEdit}
+                        onClick={() => handleQuestionChange(index - 1)}
+                    >
+                        Pregunta Anterior
+                    </Button>
+                </Grid.Column>
+                <Grid.Column className="text-right">
+                    <Button
+                        variant="secondary"
+                        disabled={isFinal}
+                        isVisible={!isFinal && !isEdit}
+                        onClick={() => handleQuestionChange(index + 1)}
+                    >
+                        Siguiente Pregunta
+                    </Button>
+                    <Button
+                        variant="secondary"
+                        isVisible={isFinal || isEdit}
+                        onClick={() => handleQuestionChange(index + 1)}
+                    >
+                        Revisar Respuestas
+                    </Button>
+                </Grid.Column>
+            </Grid>
         </div>
     );
 }
