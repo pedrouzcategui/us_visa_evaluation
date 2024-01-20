@@ -5,6 +5,7 @@ import { YesNo } from "..";
 import { useContext, useState } from "react";
 import { QuizContext } from "@/contexts/QuizContext";
 import Button from "../Button/Button";
+// import Grid from '@/components';
 
 type QuestionTypeExtended = IQuestion & {
     isFinal: boolean;
@@ -32,7 +33,8 @@ export default function QuestionCard({
         questions,
         setIsReview,
         userAnswers,
-        isEdit
+        isEdit,
+        isReview
     } = useContext(QuizContext);
 
     const [selectedIndex, setSelectedIndex] = useState(userAnswers[currentQuestionIndex]?.selectedIndex || 0);
@@ -40,10 +42,10 @@ export default function QuestionCard({
     // console.log(`Is Final:`, isFinal);
     // console.log(`Is Edit:`, isEdit);
     const handleQuestionChange = (next_question_id: number) => {
-        if (next_question_id > currentQuestionIndex) {
+        if (next_question_id > currentQuestionIndex || isEdit) {
             handleAnswerChange(id, selectedIndex);
         }
-        if (next_question_id > questions.length) {
+        if (next_question_id > questions.length || isEdit) {
             setIsReview(true);
             return;
         }
@@ -53,8 +55,8 @@ export default function QuestionCard({
 
 
     return (
-        <div>
-            <div className={styles.card}>
+        <div className="w-4/5 min-h-[400px] flex flex-col justify-between p-5 border-2 border-slate-900 mt-5">
+            <div>
                 <QuestionCard.Header id={id} title={title} example={example} />
                 <AnswerInput
                     answer_component={answer_component}
@@ -62,10 +64,10 @@ export default function QuestionCard({
                     setSelectedIndex={setSelectedIndex}
                 />
             </div>
-            <div className={styles.button_container}>
+            {/* <Grid>
                 <Button
                     variant="primary"
-                    isVisible={index != 1}
+                    isVisible={index != 1 && !isEdit}
                     onClick={() => handleQuestionChange(index - 1)}
                 >
                     Pregunta Anterior
@@ -85,7 +87,7 @@ export default function QuestionCard({
                 >
                     Revisar Respuestas
                 </Button>
-            </div>
+            </Grid> */}
         </div>
     );
 }

@@ -15,14 +15,6 @@ export default function QuizWrapper() {
         setIsFinal(currentQuestionIndex === questions.length ?? false);
     }, [currentQuestionIndex]);
 
-    useEffect(() => {
-        setIsEdit(() => {
-            if (!isReview) {
-                return false;
-            }
-            return true;
-        });
-    }, [isReview])
 
     return (
         <div className="w-4/5 mx-auto min-h-[95vh] flex flex-col items-center justify-center">

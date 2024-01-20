@@ -1,11 +1,25 @@
 "use client";
 import { QuizContext } from "@/contexts/QuizContext";
-import React from "react";
+import React, { useContext } from "react";
 import Button from "../Button/Button";
 
 export default function QuizAnswersConfirmationScreen() {
-    const handleQuizSubmission = () => {
-        console.log('Submitting Quiz')
+    const { userAnswers } = useContext(QuizContext);
+
+    const handleQuizSubmission = async () => {
+        try {
+            const request = await fetch('http://localhost:3000/api/v1/quiz', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userAnswers),
+            });
+            const data = await request.json();
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
