@@ -9,8 +9,9 @@ type ColumnProps = React.HTMLAttributes<HTMLDivElement> & {
 }
 
 export default function Grid({ numberOfColumns, numberOfRows = 1, children, ...props }: GridProps) {
+    let grid_cols = getGridColsString(numberOfColumns);
     return (
-        <div className={`grid gap-8 grid-cols-1 md:grid-cols-${numberOfColumns} grid-rows-${numberOfRows} ${props.className ?? ""}`}>
+        <div className={`${props.className ?? ""} grid ${grid_cols} grid-rows-${numberOfRows} gap-8`}>
             {children}
         </div>
     )
@@ -23,4 +24,25 @@ function Column({ children, ...props }: ColumnProps) {
         </div>
     )
 }
+
+function getGridColsString(n: number) {
+    switch (n) {
+        case 1:
+            return 'grid-cols-1'
+        case 2:
+            return 'md:grid-cols-1 lg:grid-cols-2'
+        case 3:
+            return 'md:grid-cols-1 lg:grid-cols-3'
+        case 4:
+            return 'md:grid-cols-2 lg:grid-cols-4'
+        case 5:
+            return 'lg:grid-cols-5'
+        case 6:
+            return 'md:grid-cols-3 lg:grid-cols-6'
+        default:
+            return 'grid-cols-1'
+    }
+
+}
+
 Grid.Column = Column;

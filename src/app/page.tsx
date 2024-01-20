@@ -62,13 +62,21 @@ const PROCESS_STEPS: ProcessStep[] = [
 export default function Home() {
   return (
     <main>
-      <Container>
-        <Navbar />
+      <div style={{
+        backgroundImage: `url('hero_background.png')`,
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover'
+      }}
+        className="text-white"
+      >
         <Hero />
+      </div>
+      <Container>
         <ProcessSteps />
         <Pricing />
+        <Testimonials />
       </Container>
-      <Testimonials />
       <CTA />
     </main>
   );

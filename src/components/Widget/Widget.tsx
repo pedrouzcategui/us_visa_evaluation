@@ -7,7 +7,7 @@ type WidgetProps = {
 
 export default function Widget({ icon = <></>, title, description, extendedClassName = '' }: WidgetProps) {
     return (
-        <div className={`shadow-md p-8 ${extendedClassName}`}>
+        <div className={`p-8 ${extendedClassName}`}>
             <div className="flex items-center mb-4">
                 <div className="mr-4">
                     {icon}

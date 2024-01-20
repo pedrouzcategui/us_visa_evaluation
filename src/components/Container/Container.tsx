@@ -3,7 +3,7 @@ type ContainerProps = React.HTMLAttributes<HTMLDivElement> & {
 }
 export default function Container({ children, ...props }: ContainerProps) {
     return (
-        <div className={`w-4/5 mx-auto py-5 ${props.className ?? ''}`}>
+        <div className={`w-4/5 mx-auto py-5 ${props.className ?? ''}`} style={props.style}>
             {children}
         </div>
     )
