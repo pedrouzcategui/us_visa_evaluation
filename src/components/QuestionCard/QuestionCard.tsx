@@ -55,7 +55,7 @@ export default function QuestionCard({
 
 
     return (
-        <div className="w-4/5 min-h-[400px] flex flex-col justify-between p-5 border-2 border-slate-900 mt-5">
+        <div className="bg-white w-4/5 min-h-[400px] flex flex-col justify-between p-5 mt-5">
             <div>
                 <QuestionCard.Header id={id} title={title} example={example} />
                 <AnswerInput

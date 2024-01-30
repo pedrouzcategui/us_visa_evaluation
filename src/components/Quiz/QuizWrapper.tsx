@@ -17,29 +17,31 @@ export default function QuizWrapper() {
 
 
     return (
-        <div className="w-4/5 mx-auto min-h-[95vh] flex flex-col items-center justify-center">
-            {
-                !isReview &&
-                <>
-                    <QuestionProgressIndicator
-                        currentQuestionIndex={currentQuestionIndex}
-                        questionsLength={questions.length}
-                    />
-                    <QuestionCard
-                        id={id}
-                        answer_component={answer_component}
-                        options={options}
-                        title={title}
-                        example={example}
-                        key={`question--${currentQuestionIndex}`}
-                        index={currentQuestionIndex}
-                        isFinal={isFinal}
-                    />
-                </>
-            }
-            {
-                isReview && <QuizAnswersConfirmationScreen />
-            }
+        <div className="bg-gradient-to-tr from-indigo-600 to-indigo-950 min-h-[100vh] flex items-center">
+            <div className="w-4/5 mx-auto flex flex-col items-center justify-center ">
+                {
+                    !isReview &&
+                    <>
+                        <QuestionProgressIndicator
+                            currentQuestionIndex={currentQuestionIndex}
+                            questionsLength={questions.length}
+                        />
+                        <QuestionCard
+                            id={id}
+                            answer_component={answer_component}
+                            options={options}
+                            title={title}
+                            example={example}
+                            key={`question--${currentQuestionIndex}`}
+                            index={currentQuestionIndex}
+                            isFinal={isFinal}
+                        />
+                    </>
+                }
+                {
+                    isReview && <QuizAnswersConfirmationScreen />
+                }
+            </div>
         </div>
     );
 }

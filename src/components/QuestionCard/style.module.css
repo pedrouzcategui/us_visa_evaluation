@@ -12,9 +12,10 @@
 
 .question_text {
   font-size: 2rem;
-  margin: 20px 0px;
+  margin: 40px 0px;
   font-weight: 600;
   line-height: 2.5rem;
+  text-align: center;
 }
 
 .question_example {
