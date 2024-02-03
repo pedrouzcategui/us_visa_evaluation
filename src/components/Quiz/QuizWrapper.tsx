@@ -17,7 +17,7 @@ export default function QuizWrapper() {
 
 
     return (
-        <div className="bg-gradient-to-tr from-indigo-600 to-indigo-950 min-h-[100vh] flex items-center">
+        <div className="min-h-[100vh] flex items-center">
             <div className="w-4/5 mx-auto flex flex-col items-center justify-center ">
                 {
                     !isReview &&
@@ -54,7 +54,7 @@ function QuestionProgressIndicator({
     questionsLength: number;
 }) {
     return (
-        <div className="w-fit px-4 text-center py-2 rounded-lg bg-slate-700">
+        <div className="w-fit px-4 text-center py-2 bg-gray-800">
             <span className="text-white">
                 Question {currentQuestionIndex} / {questionsLength}
             </span>

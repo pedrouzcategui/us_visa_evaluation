@@ -10,40 +10,80 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum QuestionType {
+  radio
+  yesno
+  select
+  text
+}
+
+enum Role {
+  admin
+  user
+}
+
+enum Country {
+  US
+  UK
+}
+
 model Quiz {
   id          String           @id @default(cuid())
   title       String
+  description String
   questions   Question[]
   submissions QuizSubmission[]
+  country     Country
   published   Boolean          @default(false)
 }
 
 model Question {
-  id      String   @id @default(cuid())
-  name    String
-  answers Answer[]
-  Quiz    Quiz?    @relation(fields: [quizId], references: [id])
-  quizId  String?
+  id           String       @id @default(cuid())
+  name         String
+  example_text String?
+  quizId       String?
+  type         QuestionType
+  answers      Answer[]
+  Quiz         Quiz?        @relation(fields: [quizId], references: [id], onDelete: Cascade)
 }
 
 model Answer {
   id               String    @id @default(cuid())
-  content          String
+  label            String
   isCorrect        Boolean
-  Question         Question? @relation(fields: [questionId], references: [id])
   questionId       String?
   quizSubmissionId String?
+  Question         Question? @relation(fields: [questionId], references: [id], onDelete: Cascade)
 }
 
 model QuizSubmission {
-  id     String  @id @default(cuid())
-  Quiz   Quiz?   @relation(fields: [quizId], references: [id])
-  quizId String?
-  score  Float
+  id          String       @id @default(cuid())
+  Quiz        Quiz?        @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  quizId      String?
+  score       Float
+  userAnswers UserAnswer[]
+}
+
+model UserAnswer {
+  id               String          @id @default(cuid())
+  questionId       String
+  value            String
+  userId           String
+  User             User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quizSubmissionId String?
+  QuizSubmission   QuizSubmission? @relation(fields: [quizSubmissionId], references: [id], onDelete: Cascade)
 }
 
 model User {
-  id String @id @default(cuid())
+  id                    String       @id @default(cuid())
+  first_name            String
+  last_name             String
+  email                 String       @unique
+  phone                 String
+  password              String?
+  authentication_method String
+  role                  Role
+  UserAnswer            UserAnswer[]
 }
 
 model Subscriber {

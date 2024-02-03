@@ -9,6 +9,7 @@ type IQuizContext = {
   userAnswers: IAnswer[];
   isReview: boolean;
   isEdit: boolean;
+  currentUserAnswer: IAnswer;
   handleAnswerChange: (
     question_id: number,
     answer_index_value: number
@@ -27,6 +28,7 @@ const QuizProvider = ({ children }: { children: React.ReactNode }) => {
   const [userAnswers, setUserAnswers] = React.useState<IAnswer[]>([]);
   const [isReview, setIsReview] = React.useState(false);
   const [isEdit, setIsEdit] = React.useState(false);
+  const currentUserAnswer = userAnswers[currentQuestionIndex - 1];
 
 
   function handleAnswerChange(
@@ -52,6 +54,8 @@ const QuizProvider = ({ children }: { children: React.ReactNode }) => {
     });
   }
 
+
+
   return (
     <QuizContext.Provider
       value={{
@@ -63,7 +67,8 @@ const QuizProvider = ({ children }: { children: React.ReactNode }) => {
         isReview,
         setIsReview,
         isEdit,
-        setIsEdit
+        setIsEdit,
+        currentUserAnswer
       }}
     >
       {children}

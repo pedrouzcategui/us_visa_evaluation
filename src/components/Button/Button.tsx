@@ -18,10 +18,10 @@ function getClassNameStringByType(variant: string): string {
     let classNameString;
     switch (variant) {
         case 'primary':
-            classNameString = 'bg-red-600 text-white text-lg'
+            classNameString = 'border-2 border-black text-lg'
             break;
         case 'secondary':
-            classNameString = 'bg-blue-600 text-white text-md'
+            classNameString = 'bg-black text-white text-lg'
             break;
         case 'black':
             classNameString = 'bg-black text-white text-md'

@@ -2,7 +2,7 @@
 import styles from "./style.module.css";
 import { IQuestion } from "../types";
 import { YesNo } from "..";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { QuizContext } from "@/contexts/QuizContext";
 import Button from "../Button/Button";
 import Grid from '@/components/Grid/Grid';
@@ -32,15 +32,12 @@ export default function QuestionCard({
         currentQuestionIndex,
         questions,
         setIsReview,
-        userAnswers,
         isEdit,
-        isReview
+        currentUserAnswer
     } = useContext(QuizContext);
 
-    const [selectedIndex, setSelectedIndex] = useState(userAnswers[currentQuestionIndex]?.selectedIndex || 0);
+    const [selectedIndex, setSelectedIndex] = useState(currentUserAnswer?.selectedIndex ?? 0);
 
-    // console.log(`Is Final:`, isFinal);
-    // console.log(`Is Edit:`, isEdit);
     const handleQuestionChange = (next_question_id: number) => {
         if (next_question_id > currentQuestionIndex || isEdit) {
             handleAnswerChange(id, selectedIndex);
@@ -55,7 +52,7 @@ export default function QuestionCard({
 
 
     return (
-        <div className="bg-white w-4/5 min-h-[400px] flex flex-col justify-between p-5 mt-5">
+        <div className="bg-white border-2 border-black w-4/5 min-h-[400px] flex flex-col justify-between p-10 mt-5">
             <div>
                 <QuestionCard.Header id={id} title={title} example={example} />
                 <AnswerInput
@@ -99,10 +96,11 @@ export default function QuestionCard({
 QuestionCard.Header = ({ id, title, example }: QuestionCardHeaderProps) => {
     return (
         <>
-            <h2 className={styles.question_id}>Question #{id}</h2>
-            <h1 className={styles.question_text}>{title}</h1>
-            <span className={styles.question_example}>{example && `${example}`}</span>
-            <div className={styles.answers_container}></div>
+            {/* <h2 className={styles.question_id}>Question #{id}</h2> */}
+            <div className="">
+                <h1 className={styles.question_text}>{title}</h1>
+                <span className={styles.question_example}>{example && `${example}`}</span>
+            </div>
         </>
     )
 }
