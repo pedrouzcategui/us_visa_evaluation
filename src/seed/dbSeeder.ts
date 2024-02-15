@@ -1,4 +1,3 @@
-import { Role } from "@prisma/client";
 import { db } from "../lib/db";
 import { B1B2_QUIZ } from "./quizzes";
 
